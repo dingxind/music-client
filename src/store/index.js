@@ -81,7 +81,7 @@ const song = {
     picUrl: state => {
       let picUrl = state.picUrl
       if (!picUrl) {
-        picUrl = JSON.parse(window.sessionStorage.getItem('picUrl')) || 'http://192.168.0.105:8888/avatorImages/tubiao.jpg'
+        picUrl = JSON.parse(window.sessionStorage.getItem('picUrl')) || 'http://localhost:8888/avatorImages/tubiao.jpg'
       }
       return picUrl
     },
@@ -182,7 +182,7 @@ const store = new Vuex.Store({
     song
   },
   state: {
-    HOST: 'http://192.168.0.105:8888',
+    HOST: 'http://localhost:8888',
     loginIn: false, // 是否登录
     activeName: '', // 歌单类型名
     searchword: '', // 搜索关键词
