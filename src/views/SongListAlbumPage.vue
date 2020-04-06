@@ -88,7 +88,7 @@ export default {
     // 收集歌单里面的歌曲
     getSongId () {
       let _this = this
-      axios.get(`${_this.$store.state.HOST}/listSongOfSingers?songListId=${this.songListId}`)
+      axios.get(`${_this.$store.state.HOST}/listSongOfSingers/${this.songListId}`)
         .then(function (response) {
           // 获取歌单里的歌曲信息
           for (let item of response.data) {
@@ -104,7 +104,7 @@ export default {
     // 获取单里的歌曲
     getSongList (id) {
       let _this = this
-      axios.get(`${_this.$store.state.HOST}/listSongsOfSongs?id=${id}`)
+      axios.get(`${_this.$store.state.HOST}/listSongsOfSongs/${id}`)
         .then(res => {
           _this.songLists.push(res.data[0])
         })
@@ -115,7 +115,7 @@ export default {
     // 获取评分
     getRank (id) {
       let _this = this
-      axios.get(`${_this.$store.state.HOST}/api/getRank?songListId=${id}`)
+      axios.get(`${_this.$store.state.HOST}/api/getRank/${id}`)
         .then(res => {
           _this.value5 = res.data / 2
         })

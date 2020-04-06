@@ -118,7 +118,7 @@ export default {
     // 通过类别获取歌单
     getSongListOfStyle (style) {
       let _this = this
-      axios.get(`${_this.$store.state.HOST}/api/songList/likeStyle?style=${style}`)
+      axios.get(`${_this.$store.state.HOST}/api/songList/likeStyle/${style}`)
         .then(res => {
           _this.currentPage = 1
           _this.albumDatas = res.data

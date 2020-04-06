@@ -94,7 +94,7 @@ export default {
     // 通过性别对歌手分类
     getSingerSex (sex) {
       let _this = this
-      axios.get(`${_this.$store.state.HOST}/api/singer?sex=${sex}`)
+      axios.get(`${_this.$store.state.HOST}/api/singer/${sex}`)
         .then((res) => {
           _this.currentPage = 1
           _this.albumDatas = res.data
