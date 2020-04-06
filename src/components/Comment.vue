@@ -77,9 +77,9 @@ export default {
       let _this = this
       let url = ''
       if (this.type === 1) {
-        url = '/songListComments?songListId='
+        url = '/songListComments/'
       } else if (this.type === 0) {
-        url = '/songComments?songId='
+        url = '/songComments/'
       }
       axios.get(_this.$store.state.HOST + url + _this.id)
         .then(function (res) {
@@ -95,7 +95,7 @@ export default {
     // 获取评论用户的昵称和头像
     getUsers (id) {
       let _this = this
-      axios.get(`${_this.$store.state.HOST}/commentOfConsumer?id=${id}`)
+      axios.get(`${_this.$store.state.HOST}/commentOfConsumer/${id}`)
         .then(function (res) {
           _this.userPic.push(res.data[0].avator)
           _this.userName.push(res.data[0].username)
