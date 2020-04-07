@@ -2,31 +2,31 @@
   <div class="play-bar" :class="{show:toggle}">
     <div @click="toggle=!toggle" class="item-up" :class="{turn:toggle}">
       <svg class="icon" aria-hidden="true">
-        <use xlink:href="#icon-jiantou-xia-cuxiantiao"></use>
+        <use xlink:href="#icon-jiantou-xia-cuxiantiao" />
       </svg>
     </div>
-    <div class="kongjian" >
+    <div class="kongjian">
       <!--上一首-->
       <div class="item" @click="prev">
         <svg class="icon" aria-hidden="true">
-          <use xlink:href="#icon-ziyuanldpi"></use>
+          <use xlink:href="#icon-ziyuanldpi" />
         </svg>
       </div>
       <!--播放-->
       <div class="item" @click="togglePlay">
         <svg class="icon" aria-hidden="true">
-          <use :xlink:href="playButtonUrl"></use>
+          <use :xlink:href="playButtonUrl" />
         </svg>
       </div>
       <!--下一首-->
       <div class="item" @click="next">
         <svg class="icon" aria-hidden="true">
-          <use xlink:href="#icon-ziyuanldpi1"></use>
+          <use xlink:href="#icon-ziyuanldpi1" />
         </svg>
       </div>
       <!--歌曲图片-->
       <div class="item-img" @click="goPlayerPage()">
-         <img :src=picUrl alt="">
+        <img :src="picUrl" alt />
       </div>
       <!--播放进度-->
       <div class="playing-speed">
@@ -42,9 +42,15 @@
             <div ref="bg" class="bg" @click="updatemove">
               <div ref="curProgress" class="cur-progress" :style="{width: curLength+'%'}"></div>
             </div>
-              <!--进度条 end -->
+            <!--进度条 end -->
             <!--拖动的点点-->
-            <div ref="idot" class="idot" :style="{left: curLength+'%'}" @mousedown="mousedown" @mouseup="mouseup"></div>
+            <div
+              ref="idot"
+              class="idot"
+              :style="{left: curLength+'%'}"
+              @mousedown="mousedown"
+              @mouseup="mouseup"
+            ></div>
             <!--拖动的点点 end -->
           </div>
         </div>
@@ -55,20 +61,20 @@
       <div class="item" @click="collection()">
         <el-button plain style="border: 0;">
           <svg class="icon" aria-hidden="true">
-            <use xlink:href="#icon-xihuan-shi"></use>
+            <use xlink:href="#icon-xihuan-shi" />
           </svg>
         </el-button>
       </div>
       <!--下载-->
       <div class="item" @click="down">
         <svg class="icon" aria-hidden="true">
-          <use xlink:href="#icon-xiazai"></use>
+          <use xlink:href="#icon-xiazai" />
         </svg>
       </div>
       <!--歌曲列表-->
       <div class="item" @click="changeAside">
         <svg class="icon" aria-hidden="true">
-          <use xlink:href="#icon-liebiao"></use>
+          <use xlink:href="#icon-liebiao" />
         </svg>
       </div>
     </div>
@@ -327,7 +333,16 @@ export default {
         params.append('userId', _this.userId)
         params.append('type', 0)
         params.append('songId', _this.id || '')
-        axios.post(`${_this.$store.state.HOST}/api/collectionList`, params)
+        axios({
+          url:`${_this.$store.state.HOST}/api/collectionList`, 
+          method:"post",
+          dataType:"json",
+          data:{
+            'userId': _this.userId,
+            'type': 0,
+            'songId': _this.id || ''
+          }
+          })
           .then(res => {
             if (res.data.code === 1) {
               this.$notify({
@@ -359,11 +374,11 @@ export default {
 </script>
 
 <style scoped>
-.play-bar{
+.play-bar {
   position: fixed;
   bottom: 0;
   width: 100%;
-  transition: all .5s;
+  transition: all 0.5s;
   box-shadow: 0 0 10px black;
 }
 
@@ -390,11 +405,11 @@ export default {
   bottom: -60px;
 }
 
-.turn{
+.turn {
   transform: rotate(180deg);
 }
 
-.item{
+.item {
   width: 80px;
   height: 50px;
   line-height: 60px;
@@ -431,7 +446,7 @@ export default {
   width: 70px;
   text-align: center;
   font-size: 13px;
-  color:black;
+  color: black;
   font-weight: 500;
   top: -10px;
 }
@@ -455,7 +470,7 @@ export default {
   background: #30a4fc;
 }
 
-.playing-speed>.progress-box .idot {
+.playing-speed > .progress-box .idot {
   width: 16px;
   height: 16px;
   position: relative;
