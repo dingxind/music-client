@@ -4,13 +4,11 @@
     <div class="album-body">
       <div class="album-slide">
         <div class="album-img">
-          <img :src=attachImageUrl(singers.pic) alt="">
+          <img :src="attachImageUrl(singers.pic)" alt />
         </div>
         <div class="album-info">
           <h2>简介：</h2>
-          <span>
-            {{singers.introduction}}
-          </span>
+          <span>{{singers.introduction}}</span>
         </div>
       </div>
       <div class="album-content">
@@ -46,122 +44,137 @@
 </template>
 
 <script>
-import axios from 'axios'
-import { mixin } from '../mixins'
-import { mapGetters } from 'vuex'
-import AlbumContent from '../components/AlbumContent'
-import Comment from '../components/Comment'
+import axios from "axios";
+import { mixin } from "../mixins";
+import { mapGetters } from "vuex";
+import AlbumContent from "../components/AlbumContent";
+import Comment from "../components/Comment";
 
 export default {
-  name: 'song-list-album-page',
+  name: "song-list-album-page",
   components: {
     AlbumContent,
     Comment
   },
-  data () {
+  data() {
     return {
       songLists: [],
       singers: {},
       count: 0, // 点赞数
-      songListId: '', // 歌单ID
+      songListId: "", // 歌单ID
       value3: 0,
       value5: 0
-    }
+    };
   },
   computed: {
     ...mapGetters([
-      'loginIn', // 登录标识
-      'tempList', // 单个歌单信息
-      'listOfSongs', // 存放的音乐
-      'userId', // 用户ID
-      'avator' // 用户头像
+      "loginIn", // 登录标识
+      "tempList", // 单个歌单信息
+      "listOfSongs", // 存放的音乐
+      "userId", // 用户ID
+      "avator" // 用户头像
     ])
   },
-  created () {
-    this.songListId = this.tempList.id // 给歌单ID赋值
-    this.singers = this.tempList
-    this.getSongId() // 获取歌单里面的歌曲ID
-    this.getRank(this.songListId) // 获取评分
+  created() {
+    this.songListId = this.tempList.id; // 给歌单ID赋值
+    this.singers = this.tempList;
+    this.getSongId(); // 获取歌单里面的歌曲ID
+    this.getRank(this.songListId); // 获取评分
   },
   mixins: [mixin],
   methods: {
     // 收集歌单里面的歌曲
-    getSongId () {
-      let _this = this
-      axios.get(`${_this.$store.state.HOST}/listSongOfSingers/${this.songListId}`)
-        .then(function (response) {
+    getSongId() {
+      let _this = this;
+      axios
+        .get(`${_this.$store.state.HOST}/listSongOfSingers/${this.songListId}`)
+        .then(function(response) {
           // 获取歌单里的歌曲信息
           for (let item of response.data) {
-            _this.getSongList(item.songId)
+            _this.getSongList(item.songId);
           }
-          _this.$store.commit('setListOfSongs', _this.songLists)
-          window.sessionStorage.setItem('listOfSongs', JSON.stringify(_this.songLists))
+          _this.$store.commit("setListOfSongs", _this.songLists);
+          window.sessionStorage.setItem(
+            "listOfSongs",
+            JSON.stringify(_this.songLists)
+          );
         })
-        .catch(function (error) {
-          console.log(error)
-        })
+        .catch(function(error) {
+          console.log(error);
+        });
     },
     // 获取单里的歌曲
-    getSongList (id) {
-      let _this = this
-      axios.get(`${_this.$store.state.HOST}/listSongsOfSongs/${id}`)
+    getSongList(id) {
+      let _this = this;
+      axios
+        .get(`${_this.$store.state.HOST}/listSongsOfSongs/${id}`)
         .then(res => {
-          _this.songLists.push(res.data[0])
+          _this.songLists.push(res.data[0]);
         })
-        .catch(function (error) {
-          console.log(error)
-        })
+        .catch(function(error) {
+          console.log(error);
+        });
     },
     // 获取评分
-    getRank (id) {
-      let _this = this
-      axios.get(`${_this.$store.state.HOST}/api/getRank/${id}`)
+    getRank(id) {
+      let _this = this;
+      axios
+        .get(`${_this.$store.state.HOST}/api/getRank/${id}`)
         .then(res => {
-          _this.value5 = res.data / 2
+          _this.value5 = res.data / 2;
         })
-        .catch(function (error) {
-          console.log(error)
-        })
+        .catch(function(error) {
+          console.log(error);
+        });
     },
     // 提交评分
-    pushValue () {
+    pushValue() {
       if (this.loginIn) {
-        let _this = this
-        var params = new URLSearchParams()
-        params.append('songListId', _this.songListId)
-        params.append('consumerId', _this.userId)
-        params.append('score', _this.value3 * 2)
-        axios.post(`${_this.$store.state.HOST}/api/pushRank`, params)
+        let _this = this;
+        // var params = new URLSearchParams();
+        // params.append("songListId", _this.songListId);
+        // params.append("consumerId", _this.userId);
+        // params.append("score", _this.value3 * 2);
+        axios({
+          url: `${_this.$store.state.HOST}/api/pushRank`,
+          method: "post",
+          dataType: "json",
+          data: {
+            songListId: _this.songListId,
+            consumerId: _this.userId,
+            score: _this.value3 * 2
+          }
+        })
           .then(res => {
             if (res.data.code === 1) {
-              _this.getRank(_this.songListId)
+              _this.getRank(_this.songListId);
               _this.$notify({
-                title: '评分成功',
-                type: 'success'
-              })
+                title: "评分成功",
+                type: "success"
+              });
             } else {
               _this.$notify({
-                title: '评分失败',
-                type: 'error'
-              })
+                title: "评分失败",
+                type: "error"
+              });
             }
           })
           .catch(failResponse => {
             _this.$notify({
-              title: '您已评价过啦',
-              type: 'warning'
-            })
-          })
+              title: "您已评价过啦",
+              type: "warning"
+            });
+          });
       } else {
-        this.value3 = null
+        this.value3 = null;
         this.$notify({
-          title: '请先登录',
-          type: 'warning'
-        })
+          title: "请先登录",
+          type: "warning"
+        });
       }
     }
   }
-}
+};
 </script>
 
 <style scoped>
@@ -189,7 +202,7 @@ export default {
   width: 300px;
   display: inline-block;
   position: relative;
-  top:-100px;
+  top: -100px;
   left: 50px;
   border-radius: 10%;
   overflow: hidden;
@@ -213,7 +226,7 @@ export default {
 }
 
 /*歌单内容*/
-.album-content{
+.album-content {
   margin-left: 300px;
   padding: 40px 100px;
 }
@@ -235,7 +248,7 @@ export default {
   margin-left: 100px;
 }
 
-.album-score > span{
+.album-score > span {
   font-size: 60px;
 }
 
@@ -250,5 +263,4 @@ export default {
   padding: 0 40px 50px 40px;
   min-width: 700px;
 }
-
 </style>
