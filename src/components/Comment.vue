@@ -84,8 +84,8 @@ export default {
       axios
         .get(_this.$store.state.HOST + url + _this.id)
         .then(function(res) {
-          _this.commentList = res.data;
-          for (let item of res.data) {
+          _this.commentList = res.data.data;
+          for (let item of res.data.data) {
             _this.getUsers(item.userId);
           }
         })
@@ -111,23 +111,14 @@ export default {
       if (this.loginIn) {
         // 0 代表歌曲， 1 代表歌单
         let _this = this;
-        // var params = new URLSearchParams();
-        // if (this.type === 1) {
-        //   params.append("songListId", _this.id);
-        // } else if (this.type === 0) {
-        //   params.append("songId", _this.id);
-        // }
-        // params.append("userId", _this.userId);
-        // params.append("type", _this.type);
-        // params.append("comtent", _this.textarea);
         axios({
           url: `${_this.$store.state.HOST}/api/commentList`,
           method: "post",
-          datType: "josn",
+          datType: "json",
           data: {
             userId: _this.userId,
             type: _this.type,
-            comtent: _this.textarea,
+            content: _this.textarea,
             songListId: this.type === 1 ? _this.id : null,
             songId: this.type === 0 ? _this.id : null
           }

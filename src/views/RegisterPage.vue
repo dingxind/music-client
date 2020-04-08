@@ -253,20 +253,10 @@ export default {
       let d = _this.registerForm.birth;
       var datetime =
         d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate();
-      var params = new URLSearchParams();
-      params.append("username", _this.registerForm.username);
-      params.append("password", _this.registerForm.password);
-      params.append("sex", _this.registerForm.sex);
-      params.append("phone_num", _this.registerForm.phoneNum);
-      params.append("email", _this.registerForm.email);
-      params.append("birth", datetime);
-      params.append("introduction", _this.registerForm.introduction);
-      params.append("location", _this.registerForm.location);
-      params.append("avator", "/avatorImages/user.jpg");
       axios({
         url: `${_this.$store.state.HOST}/api/signup`,
-        dataType: "json",
         method: "post",
+        dataType: "json",
         data: {
           username: _this.registerForm.username,
           password: _this.registerForm.password,

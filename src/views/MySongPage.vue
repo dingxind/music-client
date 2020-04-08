@@ -87,7 +87,7 @@ export default {
         .then(function (response) {
           _this.collection = response.data
           // 通过歌曲ID获取歌曲信息
-          for (let item of _this.collection) {
+          for (let item of _this.collection.data) {
             _this.getCollectSongs(item.songId)
           }
           _this.$store.commit('setListOfSongs', _this.collectList)
