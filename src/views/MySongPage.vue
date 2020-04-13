@@ -4,7 +4,7 @@
     <div class="album-slide">
       <div class="album-slide">
         <div class="album-img">
-          <img :src=attachImageUrl(avator) alt="">
+          <img :src="attachImageUrl(avator)" alt="">
         </div>
         <ul class="album-info">
           <li>昵称： {{username}}</li>
@@ -65,12 +65,12 @@ export default {
       let _this = this
       axios.get(_this.$store.state.HOST + '/commentOfConsumer/' + id)
         .then(response => {
-          _this.username = response.data[0].username
-          _this.getuserSex(response.data[0].sex)
-          _this.birth = response.data[0].birth
-          _this.introduction = response.data[0].introduction
-          _this.location = response.data[0].location
-          _this.avator = response.data[0].avator
+          _this.username = response.data.data[0].username
+          _this.getuserSex(response.data.data[0].sex)
+          _this.birth = response.data.data[0].birth
+          _this.introduction = response.data.data[0].introduction
+          _this.location = response.data.data[0].location
+          _this.avator = response.data.data[0].avator
         })
     },
     getuserSex (sex) {
@@ -102,7 +102,7 @@ export default {
       let _this = this
       axios.get(_this.$store.state.HOST + '/listSongsOfSongs/' + id)
         .then(function (response) {
-          _this.collectList.push(response.data[0])
+          _this.collectList.push(response.data.data[0])
         })
         .catch(function (error) {
           console.log(error)

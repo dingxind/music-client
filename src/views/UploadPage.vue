@@ -34,7 +34,7 @@ export default {
     },
     handleAvatarSuccess (res, file) {
       let _this = this
-      if (res.code === 1) {
+      if (res.data.code === 1) {
         _this.imageUrl = URL.createObjectURL(file.raw)
         _this.$store.commit('setAvator', res.avator)
         window.localStorage.setItem('avator', JSON.stringify(res.avator))

@@ -74,7 +74,8 @@ export default {
         email: "",
         birth: "",
         introduction: "",
-        location: ""
+        location: "",
+        avator:""
       },
       cities: [
         {
@@ -228,15 +229,15 @@ export default {
       axios
         .get(`${_this.$store.state.HOST}/commentOfConsumer/${id}`)
         .then(response => {
-          _this.registerForm.username = response.data[0].username;
-          _this.registerForm.password = response.data[0].password;
-          _this.registerForm.sex = response.data[0].sex;
-          _this.registerForm.phoneNum = response.data[0].phoneNum;
-          _this.registerForm.email = response.data[0].email;
-          _this.registerForm.birth = response.data[0].birth;
-          _this.registerForm.introduction = response.data[0].introduction;
-          _this.registerForm.location = response.data[0].location;
-          _this.registerForm.avator = response.data[0].avator;
+          _this.registerForm.username = response.data.data[0].username;
+          _this.registerForm.password = response.data.data[0].password;
+          _this.registerForm.sex = response.data.data[0].sex;
+          _this.registerForm.phoneNum = response.data.data[0].phoneNum;
+          _this.registerForm.email = response.data.data[0].email;
+          _this.registerForm.birth = response.data.data[0].birth;
+          _this.registerForm.introduction = response.data.data[0].introduction;
+          _this.registerForm.location = response.data.data[0].location;
+          _this.registerForm.avator = response.data.data[0].avator;
         });
     },
     goback() {
@@ -261,7 +262,7 @@ export default {
           birth: datetime,
           introduction: _this.registerForm.introduction,
           location: _this.registerForm.location,
-          avator: "/img/user.jpg"
+          avator: _this.registerForm.avator === null?"/img/user.jpg":_this.registerForm.avator
         }
       })
         .then(res => {

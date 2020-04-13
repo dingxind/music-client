@@ -1,6 +1,6 @@
 <template>
-  <div class="play-bar" :class="{show:toggle}">
-    <div @click="toggle=!toggle" class="item-up" :class="{turn:toggle}">
+  <div class="play-bar" :class="{show:!toggle}">
+    <div @click="toggle=!toggle" class="item-up" :class="{turn:!toggle}">
       <svg class="icon" aria-hidden="true">
         <use xlink:href="#icon-jiantou-xia-cuxiantiao" />
       </svg>

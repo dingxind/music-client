@@ -40,10 +40,10 @@ export default {
         .then(function (res) {
           if (path === 'listSongLists') {
             // 获取歌单列表
-            _this.songsList[0].list = res.data.slice(0, 10)
+            _this.songsList[0].list = res.data.data.slice(0, 10)
           } else if (path === 'listSingers') {
             // 获取歌手列表
-            _this.songsList[1].list = res.data.slice(0, 10)
+            _this.songsList[1].list = res.data.data.slice(0, 10)
           }
         })
         .catch(function (error) {

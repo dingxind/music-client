@@ -30,7 +30,7 @@
       <li v-for="(item, index) in menuList" :key="index" @click="goMenuList(item.path)">{{item.name}}</li>
     </ul>
     <div id="user" @click="show()" v-if="loginIn">
-      <img :src=attachImageUrl(avator) alt="">
+      <img :src="attachImageUrl(avator)" alt="">
     </div>
   </div>
 </template>

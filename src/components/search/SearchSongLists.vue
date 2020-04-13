@@ -30,9 +30,9 @@ export default {
         })
       } else if (this.$route.query.keywords) {
         let _this = this
-        axios.get(`${_this.$store.state.HOST}/api/songList/likeTitle?title=${_this.$route.query.keywords}`)
+        axios.get(`${_this.$store.state.HOST}/api/songList/likeTitle/${_this.$route.query.keywords}`)
           .then(res => {
-            _this.albumDatas = res.data
+            _this.albumDatas = res.data.data
           })
       } else {
         this.$notify({

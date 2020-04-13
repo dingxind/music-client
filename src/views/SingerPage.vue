@@ -85,7 +85,7 @@ export default {
       axios.get(`${_this.$store.state.HOST}/listSingers`)
         .then(function (res) {
           _this.currentPage = 1
-          _this.albumDatas = res.data
+          _this.albumDatas = res.data.data
         })
         .catch(function (error) {
           console.log(error)
@@ -97,7 +97,7 @@ export default {
       axios.get(`${_this.$store.state.HOST}/api/singer/${sex}`)
         .then((res) => {
           _this.currentPage = 1
-          _this.albumDatas = res.data
+          _this.albumDatas = res.data.data
         })
         .catch(function (error) {
           console.log(error)

@@ -90,7 +90,7 @@ export default {
         .get(`${_this.$store.state.HOST}/listSongOfSingers/${this.songListId}`)
         .then(function(response) {
           // 获取歌单里的歌曲信息
-          for (let item of response.data) {
+          for (let item of response.data.data) {
             _this.getSongList(item.songId);
           }
           _this.$store.commit("setListOfSongs", _this.songLists);
@@ -109,7 +109,7 @@ export default {
       axios
         .get(`${_this.$store.state.HOST}/listSongsOfSongs/${id}`)
         .then(res => {
-          _this.songLists.push(res.data[0]);
+          _this.songLists.push(res.data.data[0]);
         })
         .catch(function(error) {
           console.log(error);
@@ -121,7 +121,7 @@ export default {
       axios
         .get(`${_this.$store.state.HOST}/api/getRank/${id}`)
         .then(res => {
-          _this.value5 = res.data / 2;
+          _this.value5 = res.data.data / 2;
         })
         .catch(function(error) {
           console.log(error);
@@ -131,9 +131,6 @@ export default {
     pushValue() {
       if (this.loginIn) {
         let _this = this;
-        // var params = new URLSearchParams();
-        // params.append("songListId", _this.songListId);
-        // params.append("consumerId", _this.userId);
         // params.append("score", _this.value3 * 2);
         axios({
           url: `${_this.$store.state.HOST}/api/pushRank`,

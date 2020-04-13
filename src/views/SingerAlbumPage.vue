@@ -3,7 +3,7 @@
     <div class="album">
       <div class="slide">
         <div class="singer-img">
-          <img :src=attachImageUrl(singer.pic) alt="">
+          <img :src="attachImageUrl(singer.pic)" alt="">
         </div>
         <ul class="info">
           <li>性别：{{attachSex(singer.sex)}}</li>
@@ -60,8 +60,8 @@ export default {
       let _this = this
       axios.get(`${_this.$store.state.HOST}/listSongs/${_this.singerId}`)
         .then(function (res) {
-          _this.$store.commit('setListOfSongs', res.data)
-          window.sessionStorage.setItem('listOfSongs', JSON.stringify(res.data))
+          _this.$store.commit('setListOfSongs', res.data.data)
+          window.sessionStorage.setItem('listOfSongs', JSON.stringify(res.data.data))
         })
         .catch(function (error) {
           console.log(error)

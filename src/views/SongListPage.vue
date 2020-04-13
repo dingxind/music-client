@@ -112,7 +112,7 @@ export default {
       axios.get(`${_this.$store.state.HOST}/listSongLists`)
         .then((res) => {
           _this.currentPage = 1
-          _this.albumDatas = res.data
+          _this.albumDatas = res.data.data
         })
     },
     // 通过类别获取歌单
@@ -121,7 +121,7 @@ export default {
       axios.get(`${_this.$store.state.HOST}/api/songList/likeStyle/${style}`)
         .then(res => {
           _this.currentPage = 1
-          _this.albumDatas = res.data
+          _this.albumDatas = res.data.data
         })
     }
   }

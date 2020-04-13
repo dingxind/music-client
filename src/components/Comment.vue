@@ -99,8 +99,8 @@ export default {
       axios
         .get(`${_this.$store.state.HOST}/commentOfConsumer/${id}`)
         .then(function(res) {
-          _this.userPic.push(res.data[0].avator);
-          _this.userName.push(res.data[0].username);
+          _this.userPic.push(res.data.data[0].avator);
+          _this.userName.push(res.data.data[0].username);
         })
         .catch(function(error) {
           console.log(error);
@@ -124,7 +124,7 @@ export default {
           }
         })
           .then(res => {
-            console.log(res.data);
+            console.log(res.data.data);
             if (res.data.code === 1) {
               _this.textarea = "";
               _this.getComment();
@@ -151,9 +151,6 @@ export default {
     postUp(id, up, index) {
       if (this.loginIn) {
         let _this = this;
-        var params = new URLSearchParams();
-        params.append("id", id);
-        params.append("up", up + 1);
         axios({
           url: `${_this.$store.state.HOST}/api/postUp`,
           method: "post",

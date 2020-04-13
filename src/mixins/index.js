@@ -74,15 +74,15 @@ export const mixin = {
         let _this = this
         axios.get(`${_this.$store.state.HOST}/listSongsOfSearch/${_this.$route.query.keywords}`)
           .then(function (res) {
-            if (!res.data.length) {
+            if (!res.data.success) {
               _this.$store.commit('setListOfSongs', [])
               _this.$notify({
                 title: '系统暂无该歌曲',
                 type: 'warning'
               })
             } else {
-              _this.$store.commit('setListOfSongs', res.data)
-              window.sessionStorage.setItem('listOfSongs', JSON.stringify(res.data))
+              _this.$store.commit('setListOfSongs', res.data.data)
+              window.sessionStorage.setItem('listOfSongs', JSON.stringify(res.data.data))
             }
           })
           .catch(function (error) {

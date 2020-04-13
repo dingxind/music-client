@@ -83,7 +83,7 @@ export default {
               title: '登录成功',
               type: 'success'
             })
-            _this.copyMsg(res.data.userMsg[0])
+            _this.copyMsg(res.data.data.userMsg[0])
             _this.$store.commit('setLoginIn', true)
             window.sessionStorage.setItem('loginIn', JSON.stringify(true))
             setTimeout(function () {
