@@ -280,7 +280,7 @@ export default {
             });
             setTimeout(function() {
               _this.$router.go(-1);
-            }, 2000);
+            }, 1000);
           } else {
             _this.showSuccess = false;
             _this.showError = true;

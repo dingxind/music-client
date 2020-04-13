@@ -34,14 +34,17 @@ export default {
     },
     handleAvatarSuccess (res, file) {
       let _this = this
-      if (res.data.code === 1) {
+      if (res.code === 1) {
         _this.imageUrl = URL.createObjectURL(file.raw)
         _this.$store.commit('setAvator', res.avator)
         window.localStorage.setItem('avator', JSON.stringify(res.avator))
         _this.$notify({
           title: '上传成功',
           type: 'success'
-        })
+        });
+         setTimeout(function() {
+              _this.$router.go(-1);
+            }, 1000);
       } else {
         _this.$notify({
           title: '上传失败',
