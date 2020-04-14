@@ -213,10 +213,10 @@ export default {
 }
 
 .navbar li {
-  margin: 0 40px;
-  padding: 0 20px;
-  height: 48px;
-  font-size: 22px;
+  margin: 0 20px;
+  padding: 0 15px;
+  height: 40px;
+  font-size: 20px;
   text-align: center;
   color: #67757f;
   border-bottom: none;

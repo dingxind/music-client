@@ -257,7 +257,7 @@ export default {
           username: _this.registerForm.username,
           password: _this.registerForm.password,
           sex: _this.registerForm.sex,
-          phone_num: _this.registerForm.phoneNum,
+          phoneNum: _this.registerForm.phoneNum,
           email: _this.registerForm.email,
           birth: datetime,
           introduction: _this.registerForm.introduction,

@@ -46,6 +46,7 @@ import { mixin } from "../mixins";
 import { mapGetters } from "vuex";
 
 export default {
+  inject:['reload'],
   name: "comment",
   mixins: [mixin],
   props: [
@@ -130,8 +131,8 @@ export default {
               _this.getComment();
               _this.$notify({
                 title: "评论成功",
-                type: "success"
-              });
+                type: "success",
+              })
             } else {
               _this.$notify({
                 title: "评论失败",

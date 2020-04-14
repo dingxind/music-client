@@ -87,7 +87,7 @@ export default {
         username: [{ required: true, trigger: "blur" }],
         password: [{ required: true, trigger: "blur" }],
         sex: [{ required: true, message: "请选择性别", trigger: "change" }],
-        phoneNum: [{ essage: "请选择日期", trigger: "blur" }],
+        phoneNum: [{ message: "请输入手机号", trigger: "blur" }],
         email: [
           { message: "请输入邮箱地址", trigger: "blur" },
           {
@@ -261,7 +261,7 @@ export default {
           username: _this.registerForm.username,
           password: _this.registerForm.password,
           sex: _this.registerForm.sex,
-          phone_num: _this.registerForm.phoneNum,
+          phoneNum: _this.registerForm.phoneNum,
           email: _this.registerForm.email,
           birth: datetime,
           introduction: _this.registerForm.introduction,
@@ -277,7 +277,7 @@ export default {
             });
             setTimeout(function() {
               _this.$router.push({ path: "/" });
-            }, 2000);
+            }, 1000);
           } else {
             _this.$notify({
               title: "注册失败",
@@ -297,12 +297,12 @@ export default {
 <style scoped>
 .register {
   position: absolute;
-  top: 100px;
+  top: 20%;
   background-color: white;
   border-radius: 10px;
   width: 350px;
   height: 580px;
-  margin-left: 800px;
+  margin-left: 60%;
   padding: 30px 30px;
 }
 

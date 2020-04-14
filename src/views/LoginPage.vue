@@ -90,7 +90,7 @@ export default {
               _this.changeIndex('首页')
               _this.$router.push({path: '/home-Page'})
               _this.$router.go(0)
-            }, 2000)
+            }, 1000)
           } else {
             _this.$notify({
               title: '用户名或密码错误',
@@ -118,8 +118,8 @@ export default {
 <style scoped>
 .login{
   position: absolute;
-  margin-left: 800px;
-  top: 200px;
+  margin-left: 60%;
+  top: 20%;
   padding: 50px 50px;
   width: 300px;
   background-color: white;
