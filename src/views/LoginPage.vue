@@ -143,8 +143,8 @@ export default {
 <style scoped>
 .login {
   position: absolute;
-  margin-left: 60%;
-  top: 20%;
+  margin-left: 40%;
+  top: 30%;
   padding: 50px 50px;
   width: 300px;
   background-color: white;

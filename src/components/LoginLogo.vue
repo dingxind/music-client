@@ -2,7 +2,7 @@
   <div class="login-logo">
     <div class="item-logo">
       <svg class="icon" aria-hidden="true">
-        <use xlink:href="#icon-yinle-"></use>
+        <!-- <use xlink:href="#icon-yinle-"></use> -->
       </svg>
     </div>
   </div>
@@ -17,7 +17,8 @@ export default {
 <style scoped>
 .login-logo{
   /* background-color: #2aa3ef; */
-  background-image: "../assets/img/tubiao.jpg";
+  background-image: url(../assets/img/groud.jpg);
+  background-size: cover;
   height: 100vh;
   width: 100%;
   overflow: hidden;
