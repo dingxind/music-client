@@ -284,6 +284,7 @@ export default {
         } else {
           this.$store.commit('setListIndex', this.listOfSongs.length - 1)
           window.sessionStorage.setItem('listIndex', JSON.stringify(this.listOfSongs.length - 1))
+          console.log(this.listOfSongs)
           this.toPlay(this.listOfSongs[this.listIndex].url)
         }
       }

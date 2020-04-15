@@ -16,9 +16,10 @@ export default {
 
 <style scoped>
 .login-logo{
-  background-color: #2aa3ef;
+  /* background-color: #2aa3ef; */
+  background-image: "../assets/img/tubiao.jpg";
   height: 100vh;
-  width: 45%;
+  width: 100%;
   overflow: hidden;
 }
 .item-logo {

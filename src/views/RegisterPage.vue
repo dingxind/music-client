@@ -16,9 +16,9 @@
         <el-form-item prop="username" label="用户名">
           <el-input v-model="registerForm.username" placeholder="用户名"></el-input>
         </el-form-item>
-        <el-form-item prop="password" label="密码">
+        <!-- <el-form-item prop="password" label="密码">
           <el-input type="password" placeholder="密码" v-model="registerForm.password"></el-input>
-        </el-form-item>
+        </el-form-item>-->
         <el-form-item prop="sex" label="性别">
           <el-radio-group v-model="registerForm.sex">
             <el-radio :label="0">女</el-radio>
@@ -71,6 +71,17 @@ export default {
     loginLogo
   },
   data: function() {
+    var validateName = (rule, value, callback) => {
+      axios
+        .get(`${this.$store.state.HOST}/api/repeatName/`+this.registerForm.username)
+        .then(function(res) {
+          if (res.data.code === 1) {
+            return callback(new Error("用户名不能重复"));
+          } else {
+            callback();
+          }
+        });
+    };
     return {
       registerForm: {
         // 注册
@@ -84,12 +95,26 @@ export default {
         location: ""
       },
       rules: {
-        username: [{ required: true, trigger: "blur" }],
-        password: [{ required: true, trigger: "blur" }],
+        username: [
+           {
+            required: true,
+            message: "请输入用户名",
+            trigger: "blur"
+          },
+          {
+            required: true,
+            message: "用户名不能重复",
+            validator: validateName,
+            trigger: "blur"
+          },
+  
+        ],
         sex: [{ required: true, message: "请选择性别", trigger: "change" }],
-        phoneNum: [{ message: "请输入手机号", trigger: "blur" }],
+        phoneNum: [
+          { required: true, message: "请输入手机号", trigger: "blur" }
+        ],
         email: [
-          { message: "请输入邮箱地址", trigger: "blur" },
+          { required: true, message: "请输入邮箱地址", trigger: "blur" },
           {
             type: "email",
             message: "请输入正确的邮箱地址",
@@ -259,7 +284,7 @@ export default {
         dataType: "json",
         data: {
           username: _this.registerForm.username,
-          password: _this.registerForm.password,
+          password: "111",
           sex: _this.registerForm.sex,
           phoneNum: _this.registerForm.phoneNum,
           email: _this.registerForm.email,
@@ -301,7 +326,7 @@ export default {
   background-color: white;
   border-radius: 10px;
   width: 350px;
-  height: 580px;
+  height: 550px;
   margin-left: 60%;
   padding: 30px 30px;
 }
