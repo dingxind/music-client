@@ -59,11 +59,9 @@
       </div>
       <!--添加-->
       <div class="item" @click="collection()">
-        <el-button plain style="border: 0;">
           <svg class="icon" aria-hidden="true">
-            <use xlink:href="#icon-xihuan-shi" />
+            <use xlink:href="#icon-xihuan" />
           </svg>
-        </el-button>
       </div>
       <!--下载-->
       <div class="item" @click="down">
@@ -394,7 +392,7 @@ export default {
   bottom: 0;
   height: 60px;
   width: 100%;
-  background-color: #fefefe;
+  background-color: rgb(177, 229, 253);
   display: flex;
   flex-wrap: nowrap;
   justify-content: center;

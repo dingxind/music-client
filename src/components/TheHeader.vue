@@ -4,11 +4,11 @@
     <div class="head-logo" @click="goHomePage">
       <div class="logo-hd">
         <svg class="icon" aria-hidden="true">
-          <use xlink:href="#icon-yinle" />
+          <use xlink:href="#icon-yinle-tubiao" />
         </svg>
       </div>
       <div>
-        <span>{{musicName}}</span>
+        <span style="color:block;font-size:30px;font-family:Simsun;font-weight:bold;">{{musicName}}</span>
       </div>
     </div>
     <ul class="navbar" ref="change">
@@ -176,7 +176,7 @@ export default {
 
 <style scoped>
 .the-header {
-  background-color: #fefefe;
+  background-color: rgb(177, 229, 253);
   width: 100%;
   height: 80px;
   position: relative;
@@ -187,7 +187,7 @@ export default {
   width: 150px;
   line-height: 80px;
   font-size: 28px;
-  font-weight: bold;
+  font-weight: 550;
   margin-left: 90px;
   display: inline-block;
   cursor: pointer;
@@ -203,7 +203,7 @@ export default {
   width: 50px;
   height: 50px;
   fill: currentColor;
-  color: black;
+  color: rgb(0, 0, 0);
 }
 
 /*nav*/
@@ -218,7 +218,7 @@ export default {
   height: 40px;
   font-size: 20px;
   text-align: center;
-  color: #67757f;
+  color: #000000;
   border-bottom: none;
   cursor: pointer;
 }
@@ -233,10 +233,10 @@ export default {
 .head-search input {
   height: 30px;
   width: 270px;
-  font-size: 16px;
+  font-size: 18px;
   border: 0;
   text-indent: 10px;
-  background-color: #ebeef0;
+  background-color: #ffffff;
 }
 
 input:focus {
@@ -329,7 +329,7 @@ input:focus {
 }
 
 .active {
-  color: #93d2f8 !important;
-  border-bottom: 6px solid #93d2f8 !important;
+  color: #26a2ff !important;
+  border-bottom: 6px solid #26a2ff !important;
 }
 </style>

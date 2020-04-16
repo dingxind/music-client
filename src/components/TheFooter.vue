@@ -24,7 +24,7 @@ export default {
 <style scoped>
 .the-footer{
   width: 100%;
-  background-color: white;
+  background-color: #D5F7FF;
   height: 180px;
   display: flex;
   align-items: center;
