@@ -1,8 +1,9 @@
 <template>
   <div class="the-footer">
     <p v-for="(item, index) in list" :key="index">
-      {{item}}
+    {{item}}
     </p>
+     <el-link href="https://blog.csdn.net/qq_17589751"  target="_blank">Designed by Xindong</el-link>
   </div>
 </template>
 
@@ -14,7 +15,6 @@ export default {
       list: [
         `关于 | 帮助 | 条款 | 反馈`,
         `Copyright © 2020`,
-        `Designed by Ding-Xindong`
       ]
     }
   }
@@ -24,8 +24,8 @@ export default {
 <style scoped>
 .the-footer{
   width: 100%;
-  background-color: #D5F7FF;
-  height: 180px;
+  background-color: #81D5EF;
+  height: 200px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -33,6 +33,6 @@ export default {
 }
 
 .the-footer p {
-  height: 30px;
+  height: 25px;
 }
 </style>

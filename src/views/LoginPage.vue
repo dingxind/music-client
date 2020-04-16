@@ -96,11 +96,15 @@ export default {
     },
     login() {
       let _this = this;
-      var params = new URLSearchParams();
-      params.append("username", _this.loginForm.username);
-      params.append("password", _this.loginForm.password);
-      axios
-        .post(`${_this.$store.state.HOST}/api/loginVerify`, params)
+      axios({
+        url: `${_this.$store.state.HOST}/api/loginVerify`,
+        method: "post",
+        dataType: "json",
+        data: {
+          username: _this.loginForm.username,
+          password: _this.loginForm.password
+        }
+      })
         .then(res => {
           // console.log('-----------获取登录信息---------------')
           if (res.data.code === 1) {
@@ -118,7 +122,7 @@ export default {
             }, 1000);
           } else {
             _this.$notify({
-              title: "用户名或密码错误",
+              title: res.data.msg,
               type: "error"
             });
           }

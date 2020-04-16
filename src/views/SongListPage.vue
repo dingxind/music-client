@@ -133,7 +133,7 @@ export default {
   margin: 30px 150px;
   padding-bottom: 50px;
   min-width: 800px;
-  background-color: #ffffff;
+  background-color: #c9ddeb;
 }
 
 .song-list-header {

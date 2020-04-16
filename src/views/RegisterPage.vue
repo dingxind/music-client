@@ -16,9 +16,9 @@
         <el-form-item prop="username" label="用户名">
           <el-input v-model="registerForm.username" placeholder="用户名"></el-input>
         </el-form-item>
-        <!-- <el-form-item prop="password" label="密码">
+        <el-form-item prop="password" label="密码">
           <el-input type="password" placeholder="密码" v-model="registerForm.password"></el-input>
-        </el-form-item>-->
+        </el-form-item>
         <el-form-item prop="sex" label="性别">
           <el-radio-group v-model="registerForm.sex">
             <el-radio :label="0">女</el-radio>
@@ -73,7 +73,10 @@ export default {
   data: function() {
     var validateName = (rule, value, callback) => {
       axios
-        .get(`${this.$store.state.HOST}/api/repeatName/`+this.registerForm.username)
+        .get(
+          `${this.$store.state.HOST}/api/repeatName/` +
+            this.registerForm.username
+        )
         .then(function(res) {
           if (res.data.code === 1) {
             return callback(new Error("用户名不能重复"));
@@ -81,6 +84,13 @@ export default {
             callback();
           }
         });
+    };
+    var validatePassword1 = (rule, value, callback) => {
+      if (value.length < 3) {
+        return callback(new Error("密码不能小于3位"));
+      } else {
+        callback();
+      }
     };
     return {
       registerForm: {
@@ -96,7 +106,7 @@ export default {
       },
       rules: {
         username: [
-           {
+          {
             required: true,
             message: "请输入用户名",
             trigger: "blur"
@@ -106,15 +116,22 @@ export default {
             message: "用户名不能重复",
             validator: validateName,
             trigger: "blur"
-          },
-  
+          }
+        ],
+        password: [
+          { required: true, message: "请输入密码", trigger: "blur" },
+          {
+            validator: validatePassword1,
+            message: "密码不能小于3位",
+            trigger: "blur"
+          }
         ],
         sex: [{ required: true, message: "请选择性别", trigger: "change" }],
         phoneNum: [
-          { required: true, message: "请输入手机号", trigger: "blur" }
+          {  message: "请输入手机号", trigger: "blur" }
         ],
         email: [
-          { required: true, message: "请输入邮箱地址", trigger: "blur" },
+          {  message: "请输入邮箱地址", trigger: "blur" },
           {
             type: "email",
             message: "请输入正确的邮箱地址",
@@ -284,7 +301,7 @@ export default {
         dataType: "json",
         data: {
           username: _this.registerForm.username,
-          password: "111",
+          password: _this.registerForm.password,
           sex: _this.registerForm.sex,
           phoneNum: _this.registerForm.phoneNum,
           email: _this.registerForm.email,
@@ -305,7 +322,7 @@ export default {
             }, 1000);
           } else {
             _this.$notify({
-              title: "注册失败",
+              title: response.data.msg,
               type: "error"
             });
           }
@@ -326,7 +343,7 @@ export default {
   background-color: white;
   border-radius: 10px;
   width: 350px;
-  height: 550px;
+  height: 600px;
   margin-left: 40%;
   padding: 30px 30px;
 }

@@ -115,7 +115,7 @@ div, ul, li{
 .singer-page {
   margin: 30px 10%;
   padding-bottom: 50px;
-  background-color: #ffffff;
+  background-color: #c9ddeb;
 }
 
 .singer-header {

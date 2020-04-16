@@ -63,7 +63,7 @@ div {
   width: 100%;
   margin-bottom: 80px;
   padding: 0 120px 50px 120px;
-  background-color: #ffffff;
+  background-color: #c9ddeb;
 }
 
 .section-head {
