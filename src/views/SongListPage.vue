@@ -52,10 +52,10 @@ export default {
           name: '粤语',
           type: 'Three'
         },
-        {
-          name: '欧美',
-          type: 'Four'
-        },
+        // {
+        //   name: '欧美',
+        //   type: 'Four'
+        // },
         {
           name: '日韩',
           type: 'Five'

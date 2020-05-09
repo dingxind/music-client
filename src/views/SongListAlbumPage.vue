@@ -149,6 +149,11 @@ export default {
                 title: "评分成功",
                 type: "success"
               });
+            } else if (res.data.code === 2) {
+              _this.$notify({
+                title: "您已评价过啦",
+                type: "warning"
+              });
             } else {
               _this.$notify({
                 title: "评分失败",
