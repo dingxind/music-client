@@ -17,7 +17,7 @@ export default {
 <style scoped>
 .login-logo{
   /* background-color: #2aa3ef; */
-  background-image: url(../assets/img/groud.jpg);
+  background-image: url(../assets/img/11.jpg);
   background-size: cover;
   height: 100vh;
   width: 100%;
